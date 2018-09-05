@@ -1,15 +1,17 @@
-import urllib2, time, os
+import socket, time, os
 
-def internet_on():
+def internet(host="8.8.8.8", port=53, timeout=3):
     try:
-        urllib2.urlopen('http://172.217.22.14', timeout=1)
+        socket.setdefaulttimeout(timeout)
+        socket.socket(socket.AF_INET, socket.SOCK_STREAM).connect((host, port))
         return True
-    except urllib2.URLError as err: 
+    except Exception as ex:
+        print ex.message
         return False
 
-while internet_on():
+while internet():
     time.sleep(15)
 
 print "Internet Down Alert! Rebooting..."
 
-os.system("reboot")
+#os.system("reboot")
