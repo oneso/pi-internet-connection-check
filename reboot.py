@@ -14,4 +14,4 @@ while internet():
 
 print "Internet Down Alert! Rebooting..."
 
-#os.system("reboot")
+os.system("reboot")
