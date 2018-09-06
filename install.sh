@@ -5,14 +5,11 @@ if [ "$EUID" -ne 0 ]
   exit
 fi
 
-DIR=`pwd`
-CRONTAB_CONTENT=`crontab -l`
-
-if [[ $CRONTAB_CONTENT = *"reboot.py"* ]]; then
+if [[ $(crontab -l) = *"reboot.py"* ]]; then
     echo "Already installed!"
     exit
 fi
 
-(crontab -l; echo "@reboot python $DIR/reboot.py > /tmp/reboot.log") | crontab -
+(crontab -l; echo "@reboot python $(pwd)/reboot.py > /tmp/reboot.log") | crontab -
 
 echo "Installed successfully!"
