@@ -13,4 +13,6 @@ if [[ $CRONTAB_CONTENT = *"reboot.py"* ]]; then
     exit
 fi
 
-$CRONTAB_CONTENT | { cat; echo "@reboot python $DIR/reboot.py > /tmp/reboot.log"; } | crontab -
+(echo $CRONTAB_CONTENT; echo "@reboot python $DIR/reboot.py > /tmp/reboot.log") | crontab -
+
+echo "Installed successfully!"
