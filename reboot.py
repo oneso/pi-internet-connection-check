@@ -9,6 +9,8 @@ def internet(host="8.8.8.8", port=53, timeout=3):
         print ex.message
         return False
 
+time.sleep(20)
+
 while internet():
     time.sleep(15)
 
